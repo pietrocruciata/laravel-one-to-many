@@ -19,6 +19,8 @@
                         <td>{{ $project->slug }}</td>
                         <td>{{ $project->description }}</td>
                         <td>{{ $project->link_git }}</td>
+                        <td>{{ $project->type_id }}</td>
+
 
                         <td><a class="btn btn-primary" href="{{ route('admin.projects.show', $project) }}">Details</a>
                         </td>

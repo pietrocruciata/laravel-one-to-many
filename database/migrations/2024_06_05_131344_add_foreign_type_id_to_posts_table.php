@@ -11,14 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('projects', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('slug')->unique();
-            $table->text('description');
-            $table->text('link_git');
-            
-            $table->timestamps();
+        Schema::table('projects', function (Blueprint $table) {
+             $table->foreignId('type_id')->constrained();
+           
         });
     }
 
@@ -27,6 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('projects');
+        Schema::table('projects', function (Blueprint $table) {
+            $table->dropForeign('projects_Type_id_foreign'); 
+            $table->dropColumn('type_id');
+        });
     }
 };

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -23,7 +24,9 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+
+        $types = Type::all();
+        return view('admin.projects.create', compact('types'));
         
     }
 
@@ -36,6 +39,8 @@ class ProjectController extends Controller
             'name' => 'required|max:200|min:2',
             'description' => 'nullable|max:1000',
             'link_git' => 'max:1000',
+            
+
             
         ]);
 

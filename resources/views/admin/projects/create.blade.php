@@ -23,9 +23,19 @@
             </div>
 
             <div class="mb-3">
-                <label for="type_id" class="form-label">link github</label>
-                <input type="text" name="type_id" class="form-control" id="type_id" placeholder="link github" value="{{old('link_git')}}">
+                <label for="link_git" class="form-label">link github</label>
+                <input type="text" name="link_git" class="form-control" id="link_git" placeholder="link github" value="{{old('link_git')}}">
             </div>
+
+            <div class="mb-3">
+                <label for="type_id" class="form-label">Titolo</label>
+                <select class="form-control" name="type_id" id="type_id">
+                  <option value="">-- Seleziona tipo --</option>
+                  @foreach($types as $type) 
+                    <option @selected( $type->id == old('type_id') ) value="{{ $type->id }}"> {{ $type->type }}</option>
+                  @endforeach
+                </select>
+              </div>
 
             <button class="btn btn-primary">Create</button>
             <a class="btn btn-secondary" href="{{ route('admin.projects.index') }}">Back</a>
