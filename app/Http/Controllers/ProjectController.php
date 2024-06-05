@@ -39,7 +39,7 @@ class ProjectController extends Controller
             'name' => 'required|max:200|min:2',
             'description' => 'nullable|max:1000',
             'link_git' => 'max:1000',
-            
+            'type_id' => 'required',
 
             
         ]);
