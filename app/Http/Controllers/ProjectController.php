@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreProjectRequest;
+use App\Http\Requests\UpdateProjectRequest;
+use Illuminate\Validation\Rule;
 use App\Models\Project;
 use App\Models\Type;
 use Illuminate\Http\Request;
@@ -33,20 +36,14 @@ class ProjectController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreProjectRequest $request)
     {
-        $request->validate([
-            'name' => 'required|max:200|min:2',
-            'description' => 'nullable|max:1000',
-            'link_git' => 'max:1000',
-            'type_id' => 'required',
 
-            
-        ]);
-
+      $form_data = $request->validated();
         
 
         $form_data = $request->all();
+
         $slug = Str::slug($form_data['name']);
         $form_data['slug'] = $slug;
 
@@ -71,21 +68,18 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('admin.projects.edit', compact('project'));
+
+        $types = Type::all();
+        return view('admin.projects.edit', compact('project','types'));
         
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Project $project)
+    public function update(UpdateProjectRequest $request, Project $project)
     {
-        $request->validate([
-            'name' => 'required|max:200|min:2',
-            'description' => 'nullable|max:1000',
-            'link_git' => 'nullable|max:1000',
-            
-        ]);
+        $form_data = $request->validated();
         
         $form_data = $request->all();
 

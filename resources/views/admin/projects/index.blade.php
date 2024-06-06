@@ -9,6 +9,7 @@
                     <th>slug</th>
                     <th>description</th>
                     <th>link_git</th>
+                    <th>type</th>
                 </tr>
             </thead>
             <tbody class="table-group-divider table-hover table-striped">
